@@ -8,6 +8,7 @@
     "start": "npx webpack-dev-server",
     "start:server": "nodemon --exec npx babel-node ./src/api/index.js",
     "build": "npx webpack --env.production",
+    "lint": "eslint --ext .js --ext .jsx . --cache",
     "test": "npx mocha --watch --require ./tests/mocha-setup.js ./src/**/test-*.js"
   },
   "engines": {
@@ -39,10 +40,50 @@
   },
   "author": "Philip Kuperberg",
   "license": "ISC",
+  "eslintConfig": {
+    "env": {
+      "browser": "true",
+      "commonjs": "true",
+      "es6": "true",
+      "node": "true"
+    },
+    "parser": "babel-eslint",
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": "true"
+      }
+    },
+    "plugins": [
+      "react"
+    ],
+    "rules": {
+      "max-len": [
+        2,
+        80,
+        4,
+        {
+          "ignoreStrings": true,
+          "ignoreComments": true,
+          "ignoreUrls": true,
+          "ignoreTemplateLiterals": true,
+          "ignorePattern": "[ ]*<p>.*</p>"
+        }
+      ],
+      "no-unused-vars": 0,
+      "no-console": 0,
+      "no-mixed-spaces-and-tabs": 0,
+      "no-undef": 0,
+      "no-inner-declarations": 0,
+      "strict": 0
+    }
+  },
   "dependencies": {
     "autoprefixer": "^8.5.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.4",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -59,6 +100,8 @@
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^5.2.0",
+    "eslint-plugin-react": "^7.10.0",
     "express": "^4.16.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
