@@ -1,0 +1,17 @@
+{
+   "search.exclude": {
+      "**/node_modules": true,
+      "**/bower_components": true,
+      "**/public": true,
+      "**/public/**/*": true,
+      "public/": true
+   },
+   "path-intellisense.mappings": {
+      "~": "${workspaceRoot}/src"
+   },
+   "exclude": [
+      "node_modules/",
+      "public/",
+      "src/node_modules/"
+   ]
+}

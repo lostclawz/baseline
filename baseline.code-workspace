@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+   ],
+   "settings": {
+      "mocha.files.glob": "./src/**/test-*.js",
+      "mocha.requires": [
+         "babel-core/register"
+      ],
+      "mocha.enabled": false
+   }
+}

@@ -1,0 +1,8 @@
+**/node_modules/
+.DS_Store
+public/js
+public/style
+public/index.html
+public/manifest.json
+coverage/
+.nyc_output/
