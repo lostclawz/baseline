@@ -111,7 +111,7 @@
     "lodash": "^4.17.10",
     "memoize-one": "^3.1.1",
     "mocha": "^5.1.1",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.3",
     "nodemon": "^1.17.4",
     "postcss-loader": "^2.1.5",
     "prop-types": "^15.6.1",
