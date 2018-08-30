@@ -171,7 +171,10 @@ module.exports = function(env, argv){
 									options: {
 										sourceMap: true,
 										plugins: function () {
-											return [require('autoprefixer')];
+											return [
+                                    require('autoprefixer'),
+                                    require('cssnano')
+                                 ];
 										}
 									}
 								},
