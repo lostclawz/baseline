@@ -2,13 +2,13 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 
 
-export default @connect(
+@connect(
    state => ({
    }),
    dispatch => ({
    })
 )
-class Page extends PureComponent{
+export default class Page extends PureComponent{
    render(){
       return (         
          <div>hello world</div>
