@@ -9,6 +9,15 @@
       "mocha.requires": [
          "babel-core/register"
       ],
-      "mocha.enabled": false
+      "mocha.enabled": false,
+      "breadcrumbs.enabled": true,
+      "javascript.autoClosingTags": false,
+      "typescript.validate.enable": false,
+      "typescript.tsdk": null,
+      "typescript.reportStyleChecksAsWarnings": false,
+      "tslint.enable": false,
+      "workbench.editor.closeEmptyGroups": false,
+      "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+      "typescript.autoClosingTags": false
    }
 }
