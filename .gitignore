@@ -6,3 +6,5 @@ public/index.html
 public/manifest.json
 coverage/
 .nyc_output/
+.vscode/sftp.json
+sftp-config.json
