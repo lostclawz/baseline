@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -126,10 +126,7 @@ module.exports = function(env, argv){
 		// *****************
 		return {
 			mode,
-			entry: {
-            "app": [jsEntry],
-            // 'worker': [workerEntry]
-         },
+			entry: {"app": [jsEntry]},
 			output: {
             filename: "js/[name].[chunkhash].js",
             path: __dirname + "/public"
@@ -155,33 +152,31 @@ module.exports = function(env, argv){
 					},
 					{
 						test: /\.scss$/,
-						use: ExtractTextPlugin.extract({
-							fallback: 'style-loader',
-							use: [
-								{
-									loader: "css-loader",
-									options: {
-										sourceMap: true,
-                              url: false,
-                              minimize: true
+						use: [
+							{ loader: MiniCssExtractPlugin.loader },
+							{
+								loader: "css-loader",
+								options: {
+									sourceMap: true,
+									url: false,
+									minimize: true
+								}
+							},
+							{
+								loader: "postcss-loader",
+								options: {
+									sourceMap: true,
+									plugins: function () {
+										return [
+											require('autoprefixer'),
+											require('cssnano')
+										];
 									}
-								},
-								{
-									loader: "postcss-loader",
-									options: {
-										sourceMap: true,
-										plugins: function () {
-											return [
-                                    require('autoprefixer'),
-                                    require('cssnano')
-                                 ];
-										}
-									}
-								},
-								{ loader: "resolve-url-loader", options: { sourceMap: true } },
-								{ loader: "sass-loader", options: { sourceMap: true } }
-							]
-						})
+								}
+							},
+							{ loader: "resolve-url-loader", options: { sourceMap: true } },
+							{ loader: "sass-loader", options: { sourceMap: true } }
+						]
 					}
 				]
 			},
@@ -200,15 +195,13 @@ module.exports = function(env, argv){
             new BundleAnalyzerPlugin(),
             new CleanWebpackPlugin([
                path.join(distDir, 'js'),
-               path.join(distDir, 'style'),
-               path.join(distDir, '*.worker.js')
+               path.join(distDir, 'style')
             ], {
                root: __dirname
             }),
 				new HtmlWebpackPlugin({
 					"template": "./src/index.html",
 					"title": SITE_TITLE,
-					// "favicon": FAV_ICON,
 					chunksSortMode: "none"
             }),
 				new webpack.DefinePlugin({
@@ -218,10 +211,10 @@ module.exports = function(env, argv){
 				}),
 				new webpack.NamedModulesPlugin(),
 				new webpack.LoaderOptionsPlugin({ minimize: true }),
-            new ExtractTextPlugin("./style/style.[hash].css"),
-            new WebpackNotifierPlugin({
-               title: SITE_TITLE
-            })
+            new MiniCssExtractPlugin({
+					filename: "./style/[name].[hash].css"
+				}),
+            new WebpackNotifierPlugin({ title: SITE_TITLE })
 			]
 		}
 	}
