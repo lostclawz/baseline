@@ -1,10 +1,31 @@
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# node modules
 **/node_modules/
+
+# bower modules
+bower_components/
+
+# typescript
+typings/
+
+# osx
 .DS_Store
-public/js
-public/style
-public/index.html
-public/manifest.json
+
+# all compiled files
+public/
+
+# testing
 coverage/
 .nyc_output/
+
+# passwords etc
+.env
 .vscode/sftp.json
 sftp-config.json
+
+# linting
+.eslintcache
