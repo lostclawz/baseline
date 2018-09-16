@@ -2,13 +2,14 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 
 
+export default
 @connect(
    state => ({
    }),
    dispatch => ({
    })
 )
-export default class Page extends PureComponent{
+class Page extends PureComponent{
    render(){
       return (         
          <div>Home</div>
