@@ -6,8 +6,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Page from '~/routes/Page';
 import Home from '~/routes/Home';
 
-
-require('./style/style.scss');
+import "~/style/style.scss";
 
 
 const App = () =>

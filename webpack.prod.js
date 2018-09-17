@@ -1,13 +1,13 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path');
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const merge = require('webpack-merge');
+
+const common = require('./webpack.common.js');
 const PACKAGE = require('./package.json');
-const WEBPACK_DEV_SERVER_PORT = PACKAGE['app-ports']['webpack-port'];
 
 
 const SITE_TITLE = PACKAGE.name;
