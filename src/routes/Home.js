@@ -9,10 +9,10 @@ export default
    dispatch => ({
    })
 )
-class Page extends PureComponent{
+class Home extends PureComponent{
    render(){
       return (         
-         <div>Home</div>
+         <div>Hello World</div>
       );
    }
 }

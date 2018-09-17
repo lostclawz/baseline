@@ -1,0 +1,83 @@
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const merge = require('webpack-merge');
+const common = require('./webpack.common.js');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PACKAGE = require('./package.json');
+const WEBPACK_DEV_SERVER_PORT = PACKAGE['app-ports']['webpack-port'];
+
+
+const SITE_TITLE = PACKAGE.name;
+
+module.exports = merge.smart(common, {
+   mode: 'production',
+   entry: {
+      'app': [path.resolve(__dirname, 'src', 'index.js')]
+   },
+   optimization: {
+      splitChunks: {
+         cacheGroups: {
+            commons: {
+               test: /[\\/]node_modules[\\/]/,
+               name: "vendor",
+               chunks: "all"
+            }
+         }
+      }
+   },
+   module: {
+      rules: [
+         {
+            test: /\.scss$/,
+            use: [
+               { loader: MiniCssExtractPlugin.loader },
+               {
+                  loader: "css-loader",
+                  options: {
+                     sourceMap: true,
+                     url: false,
+                     minimize: true
+                  }
+               },
+               {
+                  loader: "postcss-loader",
+                  options: {
+                     sourceMap: true,
+                     plugins: function () {
+                        return [
+                           require('autoprefixer'),
+                           require('cssnano')
+                        ];
+                     }
+                  }
+               },
+               {loader: "resolve-url-loader", options: {sourceMap: true}},
+               {loader: "sass-loader", options: {sourceMap: true}}
+            ]
+         }
+      ]
+   },
+   plugins: [
+      new BundleAnalyzerPlugin(),
+      new HtmlWebpackPlugin({
+         "title": SITE_TITLE,
+         template: __dirname + "/src/index.html",
+         chunksSortMode: "none"
+      }),
+      new webpack.DefinePlugin({
+         PRODUCTION: JSON.stringify(true),
+         VERSION: JSON.stringify(PACKAGE.version)
+      }),
+      new MiniCssExtractPlugin({
+         filename: "./style/[name].[hash].css"
+      }),
+      new CleanWebpackPlugin([
+         path.resolve(__dirname, "public")
+      ], {
+         root: __dirname
+      })
+   ]
+})

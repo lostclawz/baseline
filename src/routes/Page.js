@@ -12,7 +12,7 @@ export default
 class Page extends PureComponent{
    render(){
       return (         
-         <div>hello world</div>
+         <div>Page</div>
       );
    }
 }

@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start:browser": "npx webpack",
-    "start": "npx webpack-dev-server",
+    "start": "npx webpack-dev-server --config ./webpack.dev.js",
     "start:server": "nodemon --exec npx babel-node ./src/api/index.js",
-    "build": "npx webpack --env.production",
+    "build": "npx webpack --config ./webpack.prod.js",
     "lint": "eslint --ext .js --ext .jsx . --cache",
     "test": "npx mocha --watch --require ./tests/mocha-setup.js ./src/**/test-*.js"
   },
@@ -143,6 +143,7 @@
     "webpack-bundle-analyzer": "^3.0.2",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.8",
+    "webpack-merge": "^4.1.4",
     "webpack-notifier": "^1.6.0"
   }
 }
