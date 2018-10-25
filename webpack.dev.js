@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path');
 const PACKAGE = require('./package.json');
 const WEBPACK_DEV_SERVER_PORT = PACKAGE['app-ports']['webpack-port'];
+var WebpackShellPlugin = require('webpack-shell-plugin');
 
 
 const SITE_TITLE = `${PACKAGE.name} [dev ${PACKAGE.version}]`;
@@ -71,6 +72,9 @@ module.exports = merge.smart(common, {
       new WebpackNotifierPlugin({
          title: SITE_TITLE,
          contentImage: ""
+      }),
+      new WebpackShellPlugin({
+         onBuildEnd: ['nodemon --exec npx babel-node ./src/api/index.js']
       })
    ],
    devServer: {
