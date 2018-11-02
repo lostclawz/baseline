@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 
 
-export default
 @connect(
    state => ({
    }),
@@ -16,3 +15,4 @@ class Page extends PureComponent{
       );
    }
 }
+export default Page
