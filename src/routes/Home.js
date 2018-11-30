@@ -1,18 +1,13 @@
 import React, {PureComponent} from 'react';
-import {connect} from 'react-redux';
+import {StateContext} from '~/context/StateContext';
 
 
-@connect(
-   state => ({
-   }),
-   dispatch => ({
-   })
-)
-class Home extends PureComponent{
-   render(){
-      return (         
-         <div>Hello World</div>
-      );
-   }
-}
-export default Home
+export const Home = React.memo(() => {
+   let {state} = React.useContext(StateContext);
+   
+   return (
+      <div>Hello World</div>
+   )
+})
+
+export default Home;
