@@ -28,7 +28,9 @@
       "@babel/plugin-transform-destructuring",
       [
         "@babel/plugin-proposal-decorators",
-        {"legacy": true}
+        {
+          "legacy": true
+        }
       ],
       "@babel/plugin-proposal-class-properties",
       [
@@ -83,7 +85,7 @@
     }
   },
   "dependencies": {
-    "@babel/node": "^7.0.0",
+    "@babel/node": "^7.2.0",
     "@babel/polyfill": "^7.0.0",
     "chai": "^4.2.0",
     "classnames": "^2.2.5",
@@ -112,10 +114,10 @@
     "sinon": "^7.2.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.2.1",
-    "@babel/plugin-proposal-decorators": "^7.1.6",
+    "@babel/plugin-proposal-decorators": "^7.2.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
     "@babel/plugin-transform-destructuring": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
