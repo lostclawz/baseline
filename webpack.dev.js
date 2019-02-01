@@ -1,5 +1,4 @@
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -7,6 +6,7 @@ const path = require('path');
 const PACKAGE = require('./package.json');
 const WEBPACK_DEV_SERVER_PORT = PACKAGE['app-ports']['webpack-port'];
 var WebpackShellPlugin = require('webpack-shell-plugin');
+const common = require('./webpack.common.js');
 
 
 const SITE_TITLE = `${PACKAGE.name} [dev ${PACKAGE.version}]`;
@@ -14,13 +14,13 @@ const SITE_TITLE = `${PACKAGE.name} [dev ${PACKAGE.version}]`;
 module.exports = merge.smart(common, {
    mode: 'development',
    entry: {
-      'app': [
+      app: [
          'react-hot-loader/patch',
-         path.resolve(__dirname, 'src', 'index.js')
-      ]
+         path.resolve(__dirname, 'src', 'index.js'),
+      ],
    },
    output: {
-      filename: "js/[name].js"
+      filename: 'js/[name].js',
    },
    module: {
       rules: [
@@ -29,53 +29,53 @@ module.exports = merge.smart(common, {
             exclude: /node_modules/,
             use: [{
                loader: 'babel-loader',
-               options: {cacheDirectory: true}
-            }]
+               options: { cacheDirectory: true },
+            }],
          },
          {
             test: /\.scss$/,
             use: [
-               {loader: "style-loader"},
+               { loader: 'style-loader' },
                {
-                  loader: "css-loader",
+                  loader: 'css-loader',
                   options: {
                      sourceMap: true,
-                     url: false
-                  }
+                     url: false,
+                  },
                },
                {
-                  loader: "postcss-loader",
+                  loader: 'postcss-loader',
                   options: {
                      sourceMap: true,
-                     plugins: function () {
+                     plugins () {
                         return [require('autoprefixer')];
-                     }
-                  }
+                     },
+                  },
                },
-               {loader: "resolve-url-loader", options: {sourceMap: true}},
-               {loader: "sass-loader", options: {sourceMap: true}}
-            ]
-         }
-      ]
+               { loader: 'resolve-url-loader', options: { sourceMap: true } },
+               { loader: 'sass-loader', options: { sourceMap: true } },
+            ],
+         },
+      ],
    },
    plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
-         "title": SITE_TITLE,
-         template: __dirname + "/src/index.html",
-         chunksSortMode: "none"
+         title: SITE_TITLE,
+         template: `${__dirname  }/src/index.html`,
+         chunksSortMode: 'none',
       }),
       new webpack.DefinePlugin({
          PRODUCTION: JSON.stringify(false),
-         VERSION: JSON.stringify(PACKAGE.version)
+         VERSION: JSON.stringify(PACKAGE.version),
       }),
       new WebpackNotifierPlugin({
          title: SITE_TITLE,
-         contentImage: ""
+         contentImage: '',
       }),
       new WebpackShellPlugin({
-         onBuildEnd: ['nodemon --exec npx babel-node ./src/api/index.js']
-      })
+         onBuildEnd: ['nodemon --exec npx babel-node ./src/api/index.js'],
+      }),
    ],
    devServer: {
       host: 'localhost',
@@ -86,6 +86,6 @@ module.exports = merge.smart(common, {
       historyApiFallback: true,
       open: true, // to open the local server in browser
    },
-   devtool: "cheap-module-source-map",
-   watch: true
-})
+   devtool: 'cheap-module-source-map',
+   watch: true,
+});

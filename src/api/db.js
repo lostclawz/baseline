@@ -1,16 +1,18 @@
-import {MongoClient} from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 
-var _db;
+let dbContainer;
 
-export default db = {
-   init: function (databaseUrl, callback) {
-      MongoClient.connect(databaseUrl, function (err, database) {
-         _db = database;
+const db = {
+   init(databaseUrl, callback) {
+      MongoClient.connect(databaseUrl, (err, database) => {
+         dbContainer = database;
          callback(err, database);
       });
    },
-   getDb: function () {
-      return _db;
-   }
-}
+   getDb() {
+      return dbContainer;
+   },
+};
+
+export default db;

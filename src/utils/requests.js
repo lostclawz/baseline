@@ -1,4 +1,4 @@
-export function makeRequest({base, port}, url) {
+export function makeRequest({ base, port }, url) {
    return new Promise((resolve, reject) => {
       /*
          method: 'post',
@@ -11,32 +11,26 @@ export function makeRequest({base, port}, url) {
          })
       */
       fetch(`${base}:${port}${url}`)
-         .then(response => {
+         .then((response) => {
             if (response.ok) {
                resolve(response.json());
-            }
-            else {
+            } else {
                reject(response.status);
             }
          })
-         .catch(e => {
+         .catch((e) => {
             console.warn("Couldn't complete fetch request", e);
             reject(e);
-         })
-   })
+         });
+   });
 }
 
-export function queryString(queryObj) {
-   let out = [];
-   for (let key in queryObj) {
-      let val = encodeURIComponent(
-         queryObj[key] || ''
-      );
-      out.push(
-         typeof queryObj[key] === 'undefined'
-         ? key
-         : `${key}=${val}`
-      )
-   }
-   return `?${out.join('&')}`;
-}
+export const queryString = queryObj => (
+   `?${Object.entries(queryObj)
+      .map(([key, val]) => (
+         typeof val === 'undefined'
+            ? key
+            : `${key}=${encodeURIComponent(val || '')}`
+      ))
+      .join('&')}`
+);

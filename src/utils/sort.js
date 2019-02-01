@@ -1,21 +1,20 @@
 const { compare } = new Intl.Collator('en', {
    sensitivity: 'base',
    ignorePunctuation: true,
-   numeric: true
+   numeric: true,
 });
 
-export const alphaSort = (sortKey, a, b) =>
-   compare(a[sortKey], b[sortKey])
+export const alphaSort = (sortKey, a, b) => compare(a[sortKey], b[sortKey]);
 
 
 export function columnSorter(items, { columns, sortAsc, sortKey }) {
    if (!columns) {
       return items;
    }
-   let colData = columns.find(
-      c => c.key == sortKey
+   const colData = columns.find(
+      c => c.key === sortKey,
    );
-   let sortFunc = colData && typeof colData.sorter === 'function'
+   const sortFunc = colData && typeof colData.sorter === 'function'
       ? colData.sorter : alphaSort.bind(null, sortKey);
    return items.sort((a, b) => {
       let sorted = sortFunc(a, b);
@@ -26,5 +25,5 @@ export function columnSorter(items, { columns, sortAsc, sortKey }) {
          sorted *= -1;
       }
       return sorted;
-   })
+   });
 }

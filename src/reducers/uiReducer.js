@@ -1,12 +1,12 @@
-import DEFAULT_STORE from '~/defaultStore';
+import { DEFAULT_STORE } from '~/defaultStore';
 
 
 export default function uiReducer(
    state = DEFAULT_STORE.ui,
-   action
+   action,
 ) {
-   switch (action.type) {     
-      default:
-         return state;
+   switch (action.type) {
+   default:
+      return state;
    }
 }
