@@ -1,16 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import { hot } from 'react-hot-loader';
-import { store } from '~/Store';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Page from '~/routes/Page';
 import Home from '~/routes/Home';
 
 import '~/style/style.scss';
-
+import Store from '~/context/Store';
 
 const App = () => (
-   <Provider store={store}>
+   <Store>
       <BrowserRouter>
          <Switch>
             <Route path="/page">
@@ -21,7 +19,7 @@ const App = () => (
             </Route>
          </Switch>
       </BrowserRouter>
-   </Provider>
+   </Store>
 );
 
 export default hot(module)(App);
