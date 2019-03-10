@@ -22,6 +22,11 @@ module.exports = merge.smart(common, {
    output: {
       filename: 'js/[name].js',
    },
+   resolve: {
+      alias: {
+         'react-dom': '@hot-loader/react-dom',
+      },
+   },
    module: {
       rules: [
          {
