@@ -1,8 +1,8 @@
 import uiReducer from '~/reducers/uiReducer';
-import {combineReducers} from '~/utils/redux-utils';
+import { combineReducers } from '~/utils/redux-utils';
 
 
-export const rootReducer = combineReducers({
+const rootReducer = combineReducers({
    ui: uiReducer,
 });
 

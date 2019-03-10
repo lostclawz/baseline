@@ -1,18 +1,9 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+// import { StoreContext } from '~/context/Store';
 
-
-@connect(
-   // state => ({
-   // }),
-   // dispatch => ({
-   // }),
-)
-class Page extends PureComponent {
-   render() {
-      return (
-         <div>Page</div>
-      );
-   }
+export default function Page(props) {
+   // const { state, dispatch } = React.useContext(StoreContext);
+   return (
+      <div>{props.children || 'Page'}</div>
+   );
 }
-export default Page;

@@ -1,5 +1,5 @@
 
-export const DEFAULT_STORE = {
+const DEFAULT_STORE = {
    ui: {
       busy: false,
    },

@@ -15,7 +15,7 @@ const SITE_TITLE = PACKAGE.name;
 module.exports = merge.smart(common, {
    mode: 'production',
    entry: {
-      'app': [path.resolve(__dirname, 'src', 'index.js')]
+      'app': [path.resolve(__dirname, 'src', 'index.jsx')]
    },
    optimization: {
       splitChunks: {

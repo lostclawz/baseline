@@ -1,6 +1,5 @@
-import React, { useReducer, createContext, useEffect } from 'react';
+import React, { useReducer, createContext } from 'react';
 import rootReducer from '~/reducers/_root-reducer';
-import { setupWorkerListener } from '~/workers/worker-connector';
 import DEFAULT_STORE from '~/defaultStore';
 import {
    // tapMiddleware,
@@ -16,11 +15,6 @@ export const StoreContext = createContext(null);
 
 const Store = ({ children }) => {
    const [state, dispatch] = useReducer(rootReducer, DEFAULT_STORE);
-
-   // initialize connection to search worker with dispatch
-   // useEffect(() => {
-   //    setupWorkerListener(dispatch);
-   // }, []);
 
    const middlewares = [
       // tap('pre-thunk'),

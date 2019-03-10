@@ -16,7 +16,7 @@ module.exports = merge.smart(common, {
    entry: {
       app: [
          'react-hot-loader/patch',
-         path.resolve(__dirname, 'src', 'index.js'),
+         path.resolve(__dirname, 'src', 'index.jsx'),
       ],
    },
    output: {

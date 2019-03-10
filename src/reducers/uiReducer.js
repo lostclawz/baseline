@@ -1,4 +1,4 @@
-import { DEFAULT_STORE } from '~/defaultStore';
+import DEFAULT_STORE from '~/defaultStore';
 
 
 export default function uiReducer(

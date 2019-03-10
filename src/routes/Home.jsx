@@ -1,18 +1,7 @@
-import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
-
-@connect(
-   // state => ({
-   // }),
-   // dispatch => ({
-   // }),
-)
-class Home extends PureComponent {
-   render() {
-      return (
-         <div>Hello World</div>
-      );
-   }
+export default function Home(props) {
+   return (
+      <div>Hello World</div>
+   );
 }
-export default Home;
