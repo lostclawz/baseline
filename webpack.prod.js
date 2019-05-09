@@ -1,8 +1,8 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const merge = require('webpack-merge');
 
@@ -15,18 +15,18 @@ const SITE_TITLE = PACKAGE.name;
 module.exports = merge.smart(common, {
    mode: 'production',
    entry: {
-      'app': [path.resolve(__dirname, 'src', 'index.jsx')]
+      app: [path.resolve(__dirname, 'src', 'index.jsx')],
    },
    optimization: {
       splitChunks: {
          cacheGroups: {
             commons: {
                test: /[\\/]node_modules[\\/]/,
-               name: "vendor",
-               chunks: "all"
-            }
-         }
-      }
+               name: 'vendor',
+               chunks: 'all',
+            },
+         },
+      },
    },
    module: {
       rules: [
@@ -35,49 +35,54 @@ module.exports = merge.smart(common, {
             use: [
                { loader: MiniCssExtractPlugin.loader },
                {
-                  loader: "css-loader",
+                  loader: 'css-loader',
                   options: {
                      sourceMap: true,
                      url: false,
-                     minimize: true
-                  }
+                     minimize: true,
+                  },
                },
                {
-                  loader: "postcss-loader",
+                  loader: 'postcss-loader',
                   options: {
                      sourceMap: true,
-                     plugins: function () {
-                        return [
-                           require('autoprefixer'),
-                           require('cssnano')
-                        ];
-                     }
+                     plugins: () => [
+                        require('autoprefixer'),
+                        require('cssnano')
+                     ]
                   }
                },
-               {loader: "resolve-url-loader", options: {sourceMap: true}},
-               {loader: "sass-loader", options: {sourceMap: true}}
-            ]
-         }
-      ]
+               { loader: 'resolve-url-loader', options: { sourceMap: true } },
+               {
+
+                  loader: 'sass-loader',
+                  options: {
+                     sourceMap: true,
+                     implementation: require('sass'),
+                  } 
+               },
+            ],
+         },
+      ],
    },
    plugins: [
       new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin({
-         "title": SITE_TITLE,
-         template: __dirname + "/src/index.html",
-         chunksSortMode: "none"
+         title: SITE_TITLE,
+         template: `${__dirname  }/src/index.html`,
+         chunksSortMode: 'none',
       }),
       new webpack.DefinePlugin({
          PRODUCTION: JSON.stringify(true),
-         VERSION: JSON.stringify(PACKAGE.version)
+         VERSION: JSON.stringify(PACKAGE.version),
       }),
       new MiniCssExtractPlugin({
-         filename: "./style/[name].[hash].css"
+         filename: './style/[name].[hash].css',
       }),
       new CleanWebpackPlugin([
-         path.resolve(__dirname, "public")
+         path.resolve(__dirname, 'public'),
       ], {
-         root: __dirname
-      })
-   ]
-})
+         root: __dirname,
+      }),
+   ],
+});
