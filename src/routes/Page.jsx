@@ -1,9 +1,7 @@
 import React from 'react';
-// import { StoreContext } from '~/context/Store';
 
-export default function Page(props) {
-   // const { state, dispatch } = React.useContext(StoreContext);
+export default function Page({ children }) {
    return (
-      <div>{props.children || 'Page'}</div>
+      <div>{children || 'Page'}</div>
    );
 }

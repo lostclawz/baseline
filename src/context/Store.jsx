@@ -8,10 +8,10 @@ import {
    reduceMiddlewares,
 } from '~/utils/redux-utils';
 
-// const tap = tapMiddleware(!window.PRODUCTION);
 const actionLogger = actionLoggerMiddleware(!window.PRODUCTION);
 
-export const StoreContext = createContext(null);
+export const StateContext = createContext(null);
+export const DispatchContext = createContext(null);
 
 const Store = ({ children }) => {
    const [state, dispatch] = useReducer(rootReducer, DEFAULT_STORE);
@@ -28,11 +28,11 @@ const Store = ({ children }) => {
    const dispatcher = reduceMiddlewares(middlewares, state, dispatch);
 
    return (
-      <StoreContext.Provider
-         value={{ state, dispatch: dispatcher }}
-      >
-         {children}
-      </StoreContext.Provider>
+      <StateContext.Provider value={state}>
+         <DispatchContext.Provider value={dispatcher}>
+            {children}
+         </DispatchContext.Provider>
+      </StateContext.Provider>
    );
 };
 export default Store;

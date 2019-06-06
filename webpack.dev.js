@@ -82,9 +82,6 @@ module.exports = merge.smart(common, {
          title: SITE_TITLE,
          contentImage: '',
       }),
-      new WebpackShellPlugin({
-         onBuildEnd: ['nodemon --exec npx babel-node ./src/api/index.js'],
-      }),
    ],
    devServer: {
       host: 'localhost',
