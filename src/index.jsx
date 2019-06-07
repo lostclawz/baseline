@@ -4,8 +4,12 @@ import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader';
 import App from '~/App';
 
-// App with hot module replacement wrapper
-const HMLApp = hot(module)(App);
+// Hot module replacement if in production
+const AppContainer = !window.PRODUCTION ? hot(module)(App) : App;
 
-const el = document.getElementById('app');
-ReactDOM.render(<HMLApp />, el);
+// Create app container
+const appElement = document.createElement('div');
+document.body.appendChild(appElement);
+
+// Render App with hot module replacement
+ReactDOM.render(<AppContainer />, appElement);
