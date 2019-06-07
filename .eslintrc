@@ -36,16 +36,16 @@
       "jsx-a11y/click-events-have-key-events": 0,
       "jsx-a11y/no-static-element-interactions": 0,
       "max-len": [
-        2,
-        80,
-        4,
-        {
-          "ignoreStrings": true,
-          "ignoreComments": true,
-          "ignoreUrls": true,
-          "ignoreTemplateLiterals": true,
-          "ignorePattern": "[ ]*<p>.*</p>"
-        }
+         2,
+         80,
+         4,
+         {
+            "ignoreStrings": true,
+            "ignoreComments": true,
+            "ignoreUrls": true,
+            "ignoreTemplateLiterals": true,
+            "ignorePattern": "[ ]*<p>.*</p>"
+         }
       ]
    }
 }
