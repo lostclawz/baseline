@@ -94,13 +94,18 @@ module.exports = merge.smart(common, {
       }),
    ],
    devServer: {
-      host: 'localhost',
+      host: '0.0.0.0',
       port: WEBPACK_DEV_SERVER_PORT,
       hot: true,
       publicPath: '/',
       contentBase: './public',
       historyApiFallback: true,
-      open: true, // to open the local server in browser
+      open: false, // to open the local server in browser
+   },
+   watchOptions: {
+      ignored: /node_modules/,
+      aggregateTimeout: 300,
+      poll: 500,
    },
    devtool: 'cheap-module-source-map',
    watch: true,

@@ -29,3 +29,5 @@ sftp-config.json
 
 # linting
 .eslintcache
+
+notes.md
